@@ -7,11 +7,15 @@ const ConnectDb = require("./db/conn");
 const jobsRouter = require("./routes/jobs");
 const authRouter = require("./routes/user");
 
+const notFound = require("./middlewares/not-found");
+
 app.use(express.json());
 app.use(express.static("./public"));
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/jobs", jobsRouter);
+
+app.use(notFound);
 
 const statrtServer = async () => {
   const port = process.env.PORT || 5000;
