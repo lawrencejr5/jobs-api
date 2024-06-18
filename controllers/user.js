@@ -5,11 +5,6 @@ const register = async (req, res) => {
     if (!name || !email || !password)
       return res.status(400).json({ msg: "All fields are required" });
 
-    // const salt = await bcrypt.genSalt(10);
-    // const hashedPassword = await bcrypt.hash(password, salt);
-    // const tmpUser = { name, email, password: hashedPassword };
-    // const user = await User.create({ ...tmpUser });
-
     const user = await User.create({ ...req.body });
     const token = user.createJWT();
 

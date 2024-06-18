@@ -9,7 +9,7 @@ const auth = async (req, res, next) => {
   try {
     const payload = jwt.verify(token, process.env.JWT_SECRET);
     req.user = { ...payload };
-    console.log(req.user);
+    // console.log(req.user);
     next();
   } catch (err) {
     res.status(500).json({ msg: "Internal server err" });
